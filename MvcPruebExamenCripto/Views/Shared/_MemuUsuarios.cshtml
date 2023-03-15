@@ -1,0 +1,35 @@
+﻿@{
+    string usuario = Context.Session.GetString("USUARIO");
+    string password = Context.Session.GetString("PASS");
+}
+
+@if (usuario == null && password==null)
+{
+    <li class="nav-items">
+        <a asp-controller="Usuarios"
+       asp-action="Login" class="nav-link">
+            Log In
+        </a>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a asp-controller="Usuarios" asp-action="CerrarSesion"
+       class="nav-link">
+            Cerrar Sesion
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Perfil</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Mis Pedidos</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Comentarios</a>
+    </li>
+    <li class="nav-item">
+        @await Component.InvokeAsync("MenuDepartamentos")
+    </li>
+}
